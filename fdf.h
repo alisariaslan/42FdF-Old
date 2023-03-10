@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ali <ali@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/02/26 19:36:00 by ali              ###   ########.fr       */
+/*   Updated: 2023/03/10 09:52:15 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF
 #define FDF
 
-
+#include "minilibx-linux/mlx.h"
 
 #endif

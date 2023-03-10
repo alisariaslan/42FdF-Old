@@ -1,10 +1,12 @@
 NAME = fdf
-FILES = *c *.h
+MLX = minilibx-linux
+FILES = *.c *.h
+MLX_FILES = $(MLX)/*.c $(MLX)/*.h 
 ARGS = -Wall -Wextra -Werror
 
-$(NAME): $(FILES)
-	gcc -c $(FILES)
-	gcc *.o -o $(NAME)
+$(NAME): $(FILES) $(MLX_FILES)
+	gcc -c $(FILES) $(MLX_FILES) 
+	gcc *.o -o $(NAME) /usr/local/include main.c -L  /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 
 all:
 	make $(NAME)
