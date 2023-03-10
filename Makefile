@@ -1,28 +1,35 @@
 NAME = fdf
-MLX = minilibx-linux
-FILES = *.c *.h
+MLX_LINUX = minilibx_linux
+MLX_MACOS = minilibx_macos
+MLX_MACOS_AR = libmlx.a
+MLX_ARGS = -framework OpenGL -framework AppKit
+MY_FILES = *.c *.h
 MLX_FILES = $(MLX)/*.c $(MLX)/*.h 
 ARGS = -Wall -Wextra -Werror
 
-$(NAME): $(FILES) $(MLX_FILES)
-	gcc -c $(FILES) $(MLX_FILES) 
-	gcc *.o -o $(NAME) /usr/local/include main.c -L  /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+all: $(NAME)
 
-all:
-	make $(NAME)
+$(MLX_MACOS_AR) : $(MLX_MACOS)/*.c $(MLX_MACOS)/*.h $(MLX_MACOS)/*.m
+	cd $(MLX_MACOS) && make
+
+$(NAME): $(MY_FILES) $(MLX_MACOS_AR)
+	gcc -c $(MY_FILES)
+	gcc *.o $(MLX_MACOS)/$(MLX_MACOS_AR) -o $(NAME) $(MLX_ARGS)
 
 clean:
 	rm -rf *.o
+	rm -rf $(MLX_MACOS)/*.o
 	rm -rf *.gch
 
-fclean:
-	make clean
+fclean: clean
 	rm -rf $(NAME)
+	rm -rf $(MLX_MACOS)/$(MLX_MACOS_AR)
 
-re:
-	make fclean
-	make all
+re: fclean all
 
 n:
 	clear
-	norminette -R CheckForbiddenSourceHeader
+	norminette $(MY_FILES) -R CheckForbiddenSourceHeader 
+
+start: all
+	./$(NAME)
