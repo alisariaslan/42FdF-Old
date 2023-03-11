@@ -6,14 +6,14 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/03/11 01:00:15 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:45:57 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF
 # define FDF
 
-# include "minilibx_macos/mlx.h"
+# include "minilibx-macos/mlx.h"
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>

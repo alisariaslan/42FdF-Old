@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:15 by ali               #+#    #+#             */
-/*   Updated: 2023/03/11 02:02:42 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:48:24 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,9 @@ int keyboard_click(int key, k_data *vars)
 	static double angle_x = 0;
 	static double angle_y = 0;
 	static double angle_z = 0;
+	char alkey = key;
+	
+	write(1,&pkey,1);
 
 	if (key == KEY_ESCAPE)
 	{
@@ -227,11 +230,11 @@ int main(void)
 	k_data data;
 
 	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, "Rotating Cube");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, 1280, 720, "Rotating Cube");
 
 	mlx_key_hook(data.win_ptr, keyboard_click, &data);
 	mlx_hook(data.win_ptr, ON_DESTROY, 1L << 22, win_exit_event, &data);
-	mlx_loop_hook(data.mlx_ptr, draw_next_frame, &data);
+	//mlx_loop_hook(data.mlx_ptr, draw_next_frame, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
