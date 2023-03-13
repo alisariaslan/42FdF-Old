@@ -6,235 +6,287 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:15 by ali               #+#    #+#             */
-/*   Updated: 2023/03/11 20:48:24 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/03/13 23:10:08 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-int	mouse_click_mask(int select, int x, int y, t_vars *vars)
-{
-	if(select == 1)
-	{
-		int size = 50;
-		draw_gradient_square(x-size/2,y-size/2,size,vars,0x00FF00,0x0000FF);
-	}
-
-	return (0);
-}
-
-int	draw_next_frame(t_vars *vars)
-{
-	int size = 10;
-	static int pos_x = 50;
-	static int pos_y = 50;
-
-	mlx_clear_window(vars->mlx, vars->win);
-
-	if(way_x==1 && way_y == 0)
-	{
-		draw_square(pos_x,pos_y,size,vars);
-		pos_x+=size;
-	}
-	if(way_x==-1 && way_y == 0)
-	{
-		draw_square(pos_x,pos_y,size,vars);
-		pos_x-=size;
-	}
-	if(way_x==0 && way_y == 1)
-	{
-		draw_square(pos_x,pos_y,size,vars);
-		pos_y+=size;
-	}
-	if(way_x==0 && way_y == -1)
-	{
-		draw_square(pos_x,pos_y,size,vars);
-		pos_y-=size;
-	}
-
-	return (0);
-}
-
-int	main(void)
-{
-	t_vars vars;
-
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "42 FdF by Msariasl");
-
-	mlx_mouse_hook(vars.win, mouse_click_mask, &vars);
-
-
-
-	//draw_square((1920 / 2) - (350 /2), (1080 / 2) - (350/2),350, &vars);
-	//draw_gradient_square((1920 / 2) - (350 /2), (1080 / 2) - (350/2),350, &vars,0xFF0000,0x00FF00);
-	mlx_loop_hook(vars.mlx, draw_next_frame, &vars);
-	mlx_loop(vars.mlx);
-}*/
-
 #include "fdf.h"
-#include <math.h>
 
-typedef struct z_data
+int keyboard_click(int key, p_vars *vars)
 {
-	void *mlx_ptr;
-	void *win_ptr;
-} k_data;
-
-typedef struct s_point
-{
-	int x;
-	int y;
-	int z;
-} t_point;
-
-void draw_line(k_data *data, int x0, int y0, int x1, int y1)
-{
-	int dx = abs(x1 - x0);
-	int dy = abs(y1 - y0);
-	int sx = x0 < x1 ? 1 : -1;
-	int sy = y0 < y1 ? 1 : -1;
-	int err = dx - dy;
-
-	while (x0 != x1 || y0 != y1)
+	printf("key: %d\n", key);
+	if (key == L_KEY_ESC)
+		red_cross(65307, vars);
+	if (key == 'w')
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, 0xFFFFFF);
-		int e2 = 2 * err;
-		if (e2 > -dy)
-		{
-			err -= dy;
-			x0 += sx;
-		}
-		if (e2 < dx)
-		{
-			err += dx;
-			y0 += sy;
-		}
 	}
-}
-
-void rotate_x(t_point cube_points[], double angle)
-{
-    // Küp noktalarını x ekseni etrafında döndürmek için bu fonksiyonu kullanıyoruz
-    for (int i = 0; i < 8; i++)
-    {
-        int prev_y = cube_points[i].y;
-        cube_points[i].y = cube_points[i].y * cos(angle) + cube_points[i].z * sin(angle);
-        cube_points[i].z = -prev_y * sin(angle) + cube_points[i].z * cos(angle);
-    }
-}
-
-void rotate_y(t_point *point, double angle)
-{
-	int prev_x = point->x;
-	point->x = point->x * cos(angle) + point->z * sin(angle);
-	point->z = -prev_x * sin(angle) + point->z * cos(angle);
-}
-
-void rotate_z(t_point *point, double angle)
-{
-	int prev_x = point->x;
-	point->x = point->x * cos(angle) - point->y * sin(angle);
-	point->y = prev_x * sin(angle) + point->y * cos(angle);
-}
-
-int win_exit_event(k_data *vars)
-{
-	mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);
-	exit(1);
-	return (0);
-}
-
-const int x1 = 300;
-const int x2 = 400;
-t_point cube[8] = {
-	{x1, x1, x1}, {x2, x1, x1}, {x2, x2, x1}, {x1, x2, x1}, {x1, x1, x2}, {x2, x1, x2}, {x2, x2, x2}, {x1, x2, x2}};
-
-int keyboard_click(int key, k_data *vars)
-{
-	static double angle_x = 0;
-	static double angle_y = 0;
-	static double angle_z = 0;
-	char alkey = key;
-	
-	write(1,&pkey,1);
-
-	if (key == KEY_ESCAPE)
+	if (key == 's')
 	{
-		mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);
-		exit(1);
 	}
-
-	if (key == KEY_W)
+	if (key == 'd')
 	{
-		
-			rotate_x(cube, angle_x);
-		
-
-		angle_x += 0.001;
-		
 	}
-	if (key == KEY_S)
+	if (key == 'a')
 	{
-		for (int i = 0; i < 8; i++)
-		{
-
-			rotate_x(&cube[i], angle_y);
-			
-		}
-		angle_y += 0.01;
-	}
-	if (key == KEY_D)
-	{
-		for (int i = 0; i < 8; i++)
-		{
-			rotate_x(&cube[i], angle_x);
-		}
-		angle_x += 0.1;
-	}
-	if (key == KEY_A)
-	{
-		for (int i = 0; i < 8; i++)
-		{
-			rotate_x(&cube[i], angle_x);
-		}
-		angle_x -= 0.1;
 	}
 	return (key);
 }
 
-int draw_next_frame(k_data *data)
+int red_cross(int key, void *vars)
 {
-	
-	draw_line(data, cube[0].x, cube[0].y, cube[1].x, cube[1].y);
-	draw_line(data, cube[1].x, cube[1].y, cube[2].x, cube[2].y);
-	draw_line(data, cube[2].x, cube[2].y, cube[3].x, cube[3].y);
-	draw_line(data, cube[3].x, cube[3].y, cube[0].x, cube[0].y);
-
-	draw_line(data, cube[4].x, cube[4].y, cube[5].x, cube[5].y);
-	draw_line(data, cube[5].x, cube[5].y, cube[6].x, cube[6].y);
-	draw_line(data, cube[6].x, cube[6].y, cube[7].x, cube[7].y);
-	draw_line(data, cube[7].x, cube[7].y, cube[4].x, cube[4].y);
-
-	draw_line(data, cube[0].x, cube[0].y, cube[4].x, cube[4].y);
-	draw_line(data, cube[1].x, cube[1].y, cube[5].x, cube[5].y);
-	draw_line(data, cube[2].x, cube[2].y, cube[6].x, cube[6].y);
-	draw_line(data, cube[3].x, cube[3].y, cube[7].x, cube[7].y);
-
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	
-	return (0);
+	exit(0);
+	return (key);
 }
 
-int main(void)
+int draw_line(p_vars *vars, int x1, int y1, int x2, int y2)
 {
-	k_data data;
+	float dx = x2 - x1;
+	float dy = y2 - y1;
+	float slope = (dx == 0) ? 0 : dy / dx; // Eğim sıfır ise slope 0 olarak ayarlanır
+	float y = y1;
+	float x = x1;
+	float temp;
 
-	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 1280, 720, "Rotating Cube");
+	if (fabs(dx) > fabs(dy))
+	{
+		if (x2 < x1)
+		{
+			temp = x1;
+			x1 = x2;
+			x2 = temp;
+			y1 = y2;
+		}
+		y = y1;
+		x = x1;
+		while (x < x2)
+		{
+			mlx_pixel_put(vars->mlx, vars->win, x, y, WHITE);
+			y += slope * (y2 > y1 ? 1 : -1); // slope * 1 veya -1 olarak ayarlanır
+			x++;
+		}
+	}
+	else
+	{
+		if (y2 < y1)
+		{
+			temp = y1;
+			y1 = y2;
+			y2 = temp;
+			x1 = x2;
+		}
+		x = x1;
+		y = y1;
+		while (y < y2)
+		{
+			mlx_pixel_put(vars->mlx, vars->win, x, y, WHITE);
+			x += (slope == 0) ? 0 : 1 / slope; // Eğim sıfır ise x değeri sabit kalır
+			y++;
+		}
+	}
+	return 0;
+}
 
-	mlx_key_hook(data.win_ptr, keyboard_click, &data);
-	mlx_hook(data.win_ptr, ON_DESTROY, 1L << 22, win_exit_event, &data);
-	//mlx_loop_hook(data.mlx_ptr, draw_next_frame, &data);
-	mlx_loop(data.mlx_ptr);
+int draw_skeleton(p_vars *vars, p_skeleton *start)
+{
+	p_skeleton *temp = start;
+	while (temp)
+	{
+		if (temp->next)
+		{
+			draw_line(vars, temp->x, temp->y, temp->next->x, temp->next->y);
+		}
+		temp = temp->next;
+	}
+	return 0;
+}
+
+int draw_body(p_vars *vars, p_skeleton ***body)
+{
+	
+	int b = 0;
+	int r = 0;
+	while (body[b])
+	{
+		r =0;
+		while (body[b][r])
+		{
+			draw_skeleton(vars, body[b][r]);
+			r++;
+		}
+		b++;
+	}
+	
+}
+
+int add_skeleton(p_skeleton *start, int x, int y, int z)
+{
+	p_skeleton *temp;
+	p_skeleton *new;
+
+	temp = start;
+
+	while (temp)
+	{
+		if (temp->next)
+			temp = temp->next;
+		else
+			break;
+	}
+	new = (p_skeleton *)malloc(sizeof(p_skeleton));
+	new->x = x;
+	new->y = y;
+	new->z = z;
+	new->next = 0;
+
+	temp->next = new;
+}
+
+p_skeleton *init_skeleton(int x, int y, int z)
+{
+	p_skeleton *head;
+
+	head = (p_skeleton *)malloc(sizeof(p_skeleton));
+	head->x = x;
+	head->y = y;
+	head->z = z;
+	head->next = 0;
+	return head;
+}
+
+int x_point_counter(char *file)
+{
+	int count = 0;
+	int i = 0;
+	int fd = open(file, O_RDONLY);
+
+	char *text = get_next_line(fd);
+	while (text[i])
+	{
+		if (text[i] >= '0' && text[i] <= '9')
+		{
+			while (text[i] >= '0' && text[i] <= '9')
+				i++;
+			count++;
+		}
+		else
+			i++;
+	}
+	close(fd);
+	free(text);
+	return count;
+}
+
+int y_point_counter(char *file)
+{
+	int count = 0;
+	int fd = open(file, O_RDONLY);
+	char *text = get_next_line(fd);
+	void *temp;
+	while (text != 0)
+	{
+		count++;
+		temp = text;
+		text = get_next_line(fd);
+		free(temp);
+	}
+	close(fd);
+	return count;
+}
+
+p_skeleton ***build_skeleton(p_vars *vars, char *file, int row_size, int column_size)
+{
+
+	p_skeleton ***body = (p_skeleton ***)malloc(sizeof(p_skeleton **) * 2 + 1);
+	p_skeleton **rows = (p_skeleton **)malloc(sizeof(p_skeleton) * row_size + 1);
+	p_skeleton **columns = (p_skeleton **)malloc(sizeof(p_skeleton) * column_size + 1);
+
+	body[0] = rows;
+	body[1] = columns;
+	body[2] = 0;
+
+	int x_offset = vars->width / row_size;
+	int y_offset = vars->height / column_size;
+
+	int i = 0;
+	int ri = 0;
+	int ci = 0;
+	int x_now = 0;
+	int y_now = 0;
+
+	int fd = open(file, O_RDONLY);
+	char *line = get_next_line(fd);
+	char **chars = ft_split(line, ' ');
+
+	while (line)
+	{
+		i = 0;
+		x_now = 0;
+		while (chars[i])
+		{
+			if(ri == 0)
+			{
+				columns[i] = init_skeleton(x_now,y_now,0);
+			} else{
+				add_skeleton(columns[i],x_now,y_now,0);
+			}
+				
+			if (i == 0) 
+				rows[ri] = init_skeleton(x_now, y_now, 0);
+			else
+				add_skeleton(rows[ri], x_now, y_now, 0);
+			x_now += x_offset;
+			i++;
+		}
+		line = get_next_line(fd);
+		if(line)
+			chars = ft_split(line, ' ');
+		y_now += y_offset;
+		ri++;
+	}
+
+	return body;
+}
+
+int main(int argc, char **argv)
+{
+	p_vars vars;
+	p_skeleton ***body;
+
+	vars.width = 1280;
+	vars.height = 720;
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, vars.width, vars.height, "42 FdF by Msariasl");
+
+	int xpc = x_point_counter(argv[1]);
+	int ypc = y_point_counter(argv[1]);
+	body = build_skeleton(&vars, argv[1], xpc, ypc);
+
+	printf("xpc: %d\n", xpc);
+	printf("ypc: %d\n", ypc);
+
+	/*
+	void *img_ptr = mlx_new_image(vars.mlx,400,400);
+	int bits_per_pixel;
+	int size_line;
+	int endian;
+	char *img_data = mlx_get_data_addr(img_ptr,&bits_per_pixel,&size_line,&endian);
+	int color = 0xFFFFFFFF;
+	for (int x = 0; x < 400; x++)
+	{
+		int y = x;
+		int pixel_index = (y * size_line) + (x * (bits_per_pixel / 8));
+		*(int *)(img_data + pixel_index) = color;
+	}
+	mlx_put_image_to_window(vars.mlx,vars.win,img_ptr,0,0);
+	printf("\nbpp: %d sl: %d end: %d\n",bits_per_pixel,size_line,endian);
+	*/
+
+	// draw_skeleton(&vars, &start);
+	draw_body(&vars, body);
+
+	mlx_key_hook(vars.win, keyboard_click, &vars);
+	mlx_hook(vars.win, ON_DESTROY_UBUNTU, 0, red_cross, 0);
+	mlx_loop(vars.mlx);
+
 	return (0);
 }

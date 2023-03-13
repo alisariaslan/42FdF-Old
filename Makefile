@@ -9,7 +9,8 @@ NAME_MACOS = $(NAME)-mac
 MLX_MACOS = $(MLX)-macos
 MLX_MACOS_AR = libmlx.a
 
-MY_FILES = *.c *.h
+GETNEXTLINE = getnextline/*.c getnextline/*.h
+MY_FILES = *.c *.h $(GETNEXTLINE)
 
 MLX_MACOS_ARGS = -framework OpenGL -framework AppKit
 MLX_LINUX_ARGS = -lXext -lX11 -lm
@@ -17,7 +18,7 @@ MLX_LINUX_ARGS = -lXext -lX11 -lm
 ARGS = -Wall -Wextra -Werror
 
 all: linux
-	./$(NAME_LINUX)
+	./$(NAME_LINUX) "test_maps/42.fdf"
 
 mac: $(NAME_MACOS)
 
