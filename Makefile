@@ -1,6 +1,8 @@
 NAME = fdf
 MLX = minilibx
 
+LIBFT = libft/libft.a
+
 NAME_LINUX = $(NAME)-linux
 MLX_LINUX = $(MLX)-linux
 MLX_LINUX_AR = libmlx_Linux.a
@@ -9,34 +11,36 @@ NAME_MACOS = $(NAME)-mac
 MLX_MACOS = $(MLX)-macos
 MLX_MACOS_AR = libmlx.a
 
-GETNEXTLINE = getnextline/*.c getnextline/*.h
-MY_FILES = *.c *.h $(GETNEXTLINE)
-
 MLX_MACOS_ARGS = -framework OpenGL -framework AppKit
 MLX_LINUX_ARGS = -lXext -lX11 -lm
 
 ARGS = -Wall -Wextra -Werror
 
 all: linux
-	./$(NAME_LINUX) "test_maps/42.fdf"
+	./$(NAME_LINUX) "maps/42.fdf"
+
+build-libft:
+	cd libft && make
 
 mac: $(NAME_MACOS)
 
 linux: $(NAME_LINUX)
 
-$(MLX_MACOS_AR) : $(MLX_MACOS)/*.c $(MLX_MACOS)/*.h $(MLX_MACOS)/*.m
+$(MLX_MACOS_AR) : $(MLX_MACOS)/*.c $(MLX_MACOS)/*.m
 	make -C ${MLX_MACOS}
+	make build-libft
 
-$(MLX_LINUX_AR) : $(MLX_LINUX)/*.c $(MLX_LINUX)/*.h 
+$(MLX_LINUX_AR) : $(MLX_LINUX)/*.c 
 	make -C ${MLX_LINUX}
+	make build-libft
 
-$(NAME_MACOS): $(MY_FILES) $(MLX_MACOS_AR)
-	gcc -c $(MY_FILES)
-	gcc *.o $(MLX_MACOS)/$(MLX_MACOS_AR) -o $(NAME_MACOS) $(MLX_MACOS_ARGS)
+$(NAME_MACOS): *.c $(MLX_MACOS_AR)
+	gcc -c *.c
+	gcc *.o $(MLX_MACOS)/$(MLX_MACOS_AR) $(LIBFT) -o $(NAME_MACOS) $(MLX_MACOS_ARGS)
 
-$(NAME_LINUX): $(MY_FILES) $(MLX_LINUX_AR)
-	gcc -c $(MY_FILES)
-	gcc *.o $(MLX_LINUX)/$(MLX_LINUX_AR) -o $(NAME_LINUX) $(MLX_LINUX_ARGS)
+$(NAME_LINUX): *.c $(MLX_LINUX_AR)
+	gcc -c *.c
+	gcc *.o $(MLX_LINUX)/$(MLX_LINUX_AR) $(LIBFT) -o $(NAME_LINUX) $(MLX_LINUX_ARGS)
 
 clean:
 	rm -rf *.o
@@ -54,4 +58,4 @@ re: fclean all
 
 n:
 	clear
-	norminette $(MY_FILES) -R CheckForbiddenSourceHeader
+	norminette *.c -R CheckForbiddenSourceHeader

@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   counter.c                                          :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 13:05:36 by msariasl          #+#    #+#             */
-/*   Updated: 2023/03/10 13:11:48 by msariasl         ###   ########.fr       */
+/*   Created: 2023/03/28 12:36:10 by msariasl          #+#    #+#             */
+/*   Updated: 2023/03/28 12:40:25 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	char_counter(char *chars)
+int	exit_button(int key, void *vars)
 {
-	int	i;
-
-	i = 0;
-	while (chars[i])
-	{
-		i++;
-	}
-	return (i);
+	exit(0);
+	return (key);
 }
 
-int	step_counter(int n)
+int	keyboard_click(int key, p_vars *vars)
 {
-	int	steps;
-
-	steps = 1;
-	if (n < 0)
-		n *= -1;
-	while (n >= 10)
+	printf("key: %d\n", key);
+	if (key == KEY_ESC_UBUNTU)
+		exit_button(65307, vars);
+	if (key == 'w')
 	{
-		n /= 10;
-		steps++;
 	}
-	return (steps);
+	if (key == 's')
+	{
+	}
+	if (key == 'd')
+	{
+	}
+	if (key == 'a')
+	{
+	}
+	return (key);
 }
