@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/03/30 19:47:13 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:39:07 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,8 @@ typedef struct	s_fdf
 
 int			exit_button(int key, void *vars);
 int			keyboard_click(int key, t_vars *vars);
+
+void		show_invalid_file_input(char *argv0);
+void		how_to_control();
 
 #endif
