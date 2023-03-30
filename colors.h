@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 12:36:10 by msariasl          #+#    #+#             */
-/*   Updated: 2023/03/30 19:42:13 by msariasl         ###   ########.fr       */
+/*   Created: 2023/03/30 19:04:15 by msariasl          #+#    #+#             */
+/*   Updated: 2023/03/30 19:04:44 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef COLORS
+# define COLORS
 
-int	exit_button(int key, void *vars)
+enum		COLORS
 {
-	exit(0);
-	return (key);
-}
+	WHITE = 0xFFFFFFFF,
+	BLACK = 0xFF000000,
+	RED = 0xFFFF0000,
+	GREEN = 0xFF00FF00,
+	BLUE = 0xFF0000FF
+};
 
-int	keyboard_click(int key, t_vars *vars)
-{
-	ft_printf("key: %d\n", key);
-	if (key == KEY_ESC)
-		exit_button(key, vars);
-	if (key == 'w')
-	{
-	}
-	if (key == 's')
-	{
-	}
-	if (key == 'd')
-	{
-	}
-	if (key == 'a')
-	{
-	}
-	return (key);
-}
+#endif

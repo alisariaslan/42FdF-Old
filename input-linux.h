@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   input-linux.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 12:36:10 by msariasl          #+#    #+#             */
-/*   Updated: 2023/03/30 19:42:13 by msariasl         ###   ########.fr       */
+/*   Created: 2023/03/30 18:59:11 by msariasl          #+#    #+#             */
+/*   Updated: 2023/03/30 19:16:33 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef INPUT_LINUX
+# define INPUT_LINUX
 
-int	exit_button(int key, void *vars)
+enum		EVENTS
 {
-	exit(0);
-	return (key);
-}
+	EVENT_ON_KEYDOWN = 2,
+	EVENT_ON_KEYUP = 3,
+	EVENT_ON_MOUSEDOWN = 4,
+	EVENT_ON_MOUSEUP = 5,
+	EVENT_ON_MOUSEMOVE = 6,
+	EVENT_ON_EXPOSE = 12,
+	EVENT_ON_DESTROY = 33,
+	EVENT_ON_RESIZE = 25
+};
 
-int	keyboard_click(int key, t_vars *vars)
+enum		KEYS
 {
-	ft_printf("key: %d\n", key);
-	if (key == KEY_ESC)
-		exit_button(key, vars);
-	if (key == 'w')
-	{
-	}
-	if (key == 's')
-	{
-	}
-	if (key == 'd')
-	{
-	}
-	if (key == 'a')
-	{
-	}
-	return (key);
-}
+	KEY_ESC = 65307
+};
+
+#endif
