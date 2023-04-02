@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/03/30 22:39:07 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/02 03:56:13 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define MAGNIFY 2
 
 # include "libft/libft.h"
-# include "minilibx-macos/mlx.h"
-# include "input-mac.h"
+# include "minilibx-linux/mlx.h"
+# include "input-linux.h"
 
 # include <fcntl.h>
 # include <math.h>
@@ -77,6 +77,11 @@ typedef struct	s_fdf
 	t_img	image;
 	t_color	color;
 }				t_fdf;
+
+void	close_program(char *closing_text, int exit_code);
+void	read_map(char *file, t_fdf *fdf);
+int		count_lines(char *file, t_fdf *fdf);
+int		count_words(char *text, char divider);
 
 int			exit_button(int key, void *vars);
 int			keyboard_click(int key, t_vars *vars);
