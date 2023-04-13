@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/04/07 09:28:13 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:47:41 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 # define ALTI_ZOOM 10
 # define MAX_ZOOM 5
 # define MAGNIFY 2
+# define WRITE_MAP 1
 
-# include "input-linux.h"
+# include "input-mac.h"
 # include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "minilibx-macos/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdarg.h>

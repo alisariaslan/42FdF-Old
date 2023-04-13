@@ -16,8 +16,8 @@ MLX_LINUX_ARGS = -lXext -lX11 -lm
 
 ARGS = -Wall -Wextra -Werror
 
-all: linux
-	./$(NAME_LINUX) "maps/42.fdf"
+all:mac
+	./$(NAME_MACOS) "maps/42.fdf"
 
 build-libft:
 	cd libft && make
@@ -46,6 +46,7 @@ clean:
 	rm -rf *.o
 	rm -rf $(MLX_MACOS)/*.o
 	rm -rf $(MLX_LINUX)/*.o
+	rm -rf libft/*.o
 	rm -rf *.gch
 
 fclean: clean
@@ -53,6 +54,7 @@ fclean: clean
 	rm -rf $(NAME_MACOS)
 	rm -rf $(MLX_MACOS)/$(MLX_MACOS_AR)
 	rm -rf $(MLX_LINUX)/*.a
+	rm -rf $(LIBFT)
 
 re: fclean all
 

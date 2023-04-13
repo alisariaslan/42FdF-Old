@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:54:40 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/06 03:49:30 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:50:09 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int		count_lines(char *file, t_fdf *fdf)
 	{
 		if(*line == 0)
 			break;
-		ft_printf("\033[0;32m%s\n",line);
-
+		if(WRITE_MAP)
+			ft_printf("\033[0;32m%s\n",line);
 		length =  count_words(line,' ');
 		if(columns == 0)
 			columns = length;
@@ -59,5 +59,6 @@ int		count_lines(char *file, t_fdf *fdf)
 	}
 	if(close(fd)<0)
 		close_program("counter.c -> Map CLOSE Error!",0);
+	fdf->map.len = length;
 	return rows;
 }
