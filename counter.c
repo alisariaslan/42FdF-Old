@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:54:40 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/13 21:50:09 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:35:52 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ int		count_lines(char *file, t_fdf *fdf)
 	}
 	if(close(fd)<0)
 		close_program("counter.c -> Map CLOSE Error!",0);
-	fdf->map.len = length;
+	fdf->map.line_count = length;
 	return rows;
 }

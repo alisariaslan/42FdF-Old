@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/04/13 21:47:41 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:35:52 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct s_map
 	int		x1;
 	int		y1;
 	int		**vals;
-	int		len;
-	int		breadth;
+	int		line_count;
+	int		char_count;
 	int		coord_x;
 	int		coord_y;
 	int		scalin;
