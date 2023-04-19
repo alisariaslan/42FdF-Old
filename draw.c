@@ -6,22 +6,88 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 09:25:28 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/13 22:35:52 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:07:34 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	drawto_y_axis(void)
+static void	draw_pixel_helper(t_fdf *fdf, int x, int y, double dchang)
 {
+	int	point;
+
+	if ((x > 0 && y > 0) && (x < WIN_WIDTH && y < WIN_HEIGHT))
+	{
+		point = (x * 4) + (y * WIN_WIDTH * 4);
+		fdf->image.data[point] = fdf->color.r + dchang;
+		fdf->image.data[point + 1] = fdf->color.g + dchang;
+		fdf->image.data[point + 2] = fdf->color.b + dchang;
+		fdf->image.data[point + 3] = 0x4f + dchang;
+	}
 }
 
-static void	drawto_x_axis(void)
+static void	draw_pixel(t_fdf *fdf)
 {
+	double	x;
+	double	y;
+	double	dx;
+	double	dy;
+	double	dchang;
+
+	x = fdf->map.x0;
+	y = fdf->map.y0;
+	dx = fdf->map.x1 - fdf->map.x0;
+	dy = fdf->map.y1 - fdf->map.y0;
+	dchang = sqrt((pow(dx, 2)) + (pow(dy, 2)));
+	dx /= dchang;
+	dy /= dchang;
+	while (dchang > 0)
+	{
+		draw_pixel_helper(fdf, x, y, dchang);
+		x += dx;
+		y += dy;
+		dchang -= 1;
+	}
 }
 
-static void	drawto_screen(void)
+static void	drawto_x_axis(t_fdf *fdf, int x, int y)
 {
+	int		dx;
+	int		dy;
+
+	dx = x - fdf->map.line_count / 2;
+	dy = y - fdf->map.char_count / 2;
+	fdf->map.x0 = fdf->map.angle_x * (dx - dy) * fdf->map.scalin;
+	fdf->map.y0 = fdf->map.angle_y * (dx + dy) * fdf->map.scalin;
+	fdf->map.y0 -= fdf->map.vals[y][x] * fdf->map.z_value;
+	fdf->map.x1 = fdf->map.angle_x * ((dx + 1) - dy) * fdf->map.scalin;
+	fdf->map.y1 = fdf->map.angle_y * ((dx + 1) + dy) * fdf->map.scalin;
+	fdf->map.y1 -= fdf->map.vals[y][x + 1] * fdf->map.z_value;
+	fdf->map.x0 += (WIN_WIDTH / 2) + fdf->map.coord_x;
+	fdf->map.y0 += (WIN_HEIGHT / 2) + fdf->map.coord_y;
+	fdf->map.x1 += (WIN_WIDTH / 2) + fdf->map.coord_x;
+	fdf->map.y1 += (WIN_HEIGHT / 2) + fdf->map.coord_y;
+	draw_pixel(fdf);
+}
+
+static void	drawto_y_axis(t_fdf *fdf, int x, int y)
+{
+	int		dx;
+	int		dy;
+
+	dx = x - fdf->map.line_count / 2;
+	dy = y - fdf->map.char_count / 2;
+	fdf->map.x0 = fdf->map.angle_x * (dx - dy) * fdf->map.scalin;
+	fdf->map.y0 = fdf->map.angle_y * (dx + dy) * fdf->map.scalin;
+	fdf->map.y0 -= fdf->map.vals[y][x] * fdf->map.z_value;
+	fdf->map.x1 = fdf->map.angle_x * (dx - (dy + 1)) * fdf->map.scalin;
+	fdf->map.y1 = fdf->map.angle_y * (dx + (dy + 1)) * fdf->map.scalin;
+	fdf->map.y1 -= fdf->map.vals[y + 1][x] * fdf->map.z_value;
+	fdf->map.x0 += (WIN_WIDTH / 2) + fdf->map.coord_x;
+	fdf->map.y0 += (WIN_HEIGHT / 2) + fdf->map.coord_y;
+	fdf->map.x1 += (WIN_WIDTH / 2) + fdf->map.coord_x;
+	fdf->map.y1 += (WIN_HEIGHT / 2) + fdf->map.coord_y;
+	draw_pixel(fdf);
 }
 
 int	draw(t_fdf *fdf)
@@ -41,15 +107,14 @@ int	draw(t_fdf *fdf)
 			fdf->map.x0 = x;
 			fdf->map.y0 = y;
 			if (fdf->map.line_count > x + 1)
-				drawto_x_axis();
+				drawto_x_axis(fdf, x, y);
 			if (fdf->map.char_count > y + 1)
-				;
-			drawto_y_axis();
+				drawto_y_axis(fdf,x,y);
 			x++;
 		}
 		y++;
 	}
-	drawto_screen();
+	mlx_put_image_to_window(fdf->mlx.mlx, fdf->mlx.win, fdf->mlx.img, 0, 0);
 	mlx_destroy_image(fdf->mlx.mlx, fdf->mlx.img);
 	return (0);
 }

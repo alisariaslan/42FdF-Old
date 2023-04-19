@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:15 by ali               #+#    #+#             */
-/*   Updated: 2023/04/13 22:35:52 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/19 21:17:43 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	map_set(t_fdf *fdf)
 	fdf->map.coord_y = 0;
 	fdf->map.z_value = 1;
 	fdf->map.angle_x = cos(M_PI / 3);
+	printf("\ncos: %f\n",fdf->map.angle_x );
 	fdf->map.angle_y = fdf->map.angle_x * sin(M_PI / 6);
+	printf("\nsin: %f\n",fdf->map.angle_y );
 	if (fdf->map.line_count > fdf->map.char_count)
 	{
 		fdf->map.scalin = ceil((WIN_WIDTH / fdf->map.line_count) + MAGNIFY);

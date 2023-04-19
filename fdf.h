@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/04/13 22:35:52 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/19 21:21:40 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@
 # define MAGNIFY 2
 # define WRITE_MAP 1
 
-# include "input-mac.h"
+# include "input-linux.h"
+# include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
-# include "minilibx-macos/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <stdio.h>
 
 typedef struct s_vars
 {

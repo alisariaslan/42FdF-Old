@@ -16,8 +16,8 @@ MLX_LINUX_ARGS = -lXext -lX11 -lm
 
 ARGS = -Wall -Wextra -Werror
 
-all:mac
-	./$(NAME_MACOS) "maps/42.fdf"
+all:linux
+	./$(NAME_LINUX) "maps/42.fdf"
 
 build-libft:
 	cd libft && make
