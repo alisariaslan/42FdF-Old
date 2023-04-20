@@ -6,15 +6,15 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/04/19 21:21:40 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:11:35 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF
 # define FDF
 
-# define WIN_WIDTH 1280
-# define WIN_HEIGHT 720
+# define WIN_WIDTH 1600
+# define WIN_HEIGHT 900
 # define WIN_NAME "42 FdF by Msariasl"
 # define ALTI_ZOOM 10
 # define MAX_ZOOM 5
@@ -80,6 +80,7 @@ typedef struct s_fdf
 }			t_fdf;
 
 int			draw(t_fdf *fdf);
+int			exit_program(int n,char *text);
 void		close_program(char *closing_text, int exit_code);
 void		read_map(char *file, t_fdf *fdf);
 int			count_lines(char *file, t_fdf *fdf);

@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 09:25:28 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/19 22:07:34 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:10:53 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void	draw_pixel_helper(t_fdf *fdf, int x, int y, double dchang)
 	if ((x > 0 && y > 0) && (x < WIN_WIDTH && y < WIN_HEIGHT))
 	{
 		point = (x * 4) + (y * WIN_WIDTH * 4);
-		fdf->image.data[point] = fdf->color.r + dchang;
-		fdf->image.data[point + 1] = fdf->color.g + dchang;
-		fdf->image.data[point + 2] = fdf->color.b + dchang;
-		fdf->image.data[point + 3] = 0x4f + dchang;
+		fdf->image.data[point] = fdf->color.r;
+		fdf->image.data[point + 1] = fdf->color.g;
+		fdf->image.data[point + 2] = fdf->color.b;
+		
 	}
 }
 

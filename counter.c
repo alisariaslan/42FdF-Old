@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:54:40 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/13 22:35:52 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:06:32 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		count_lines(char *file, t_fdf *fdf)
 	
 	fd = open(file,O_RDONLY);
 	if(fd <= 0)
-		close_program("counter.c -> Map Open Error!",0);
+		exit_program(1,"Error! Map opening error occured");
 	rows = 0;
 	columns = 0;
 	line = get_next_line(fd);
@@ -52,13 +52,18 @@ int		count_lines(char *file, t_fdf *fdf)
 			columns = length;
 		if(columns==length)
 			rows++;
-		else
-			close_program("counter.c -> Error! This map has different column counts.",0);
+		else {
+			ft_printf("\nError Target: %s\nError Row: %d\nExpected Count: %d\nError Count: %d",file,rows+1,columns,length);
+			exit_program(1,"Error! This map has different char counts");
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
+	if(rows<4 || length <4)
+			exit_program(1,"Error! This map is smaller than 3x3 area");
+	
 	if(close(fd)<0)
-		close_program("counter.c -> Map CLOSE Error!",0);
+		exit_program(1,"Error! Map closing error occured");
 	fdf->map.line_count = length;
 	return rows;
 }

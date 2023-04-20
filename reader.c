@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:48:55 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/13 22:35:52 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:58:55 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	verify_line(char *line)
 {
 	while (*line)
 	{
-		if (!ft_isdigit(*line) && *line != ' ' && *line != '\n')
-			close_program("Map has different characters!", 0);
+		if (!ft_isdigit(*line) && *line != ' ' && *line != '\n' && *line != '-' && *line != '+')
+			exit_program(1,"Error! Map has different characters than expected. Ex:(digit,'newline','minus','positive')");
 		line++;
 	}
 }
@@ -53,17 +53,16 @@ void	read_map(char *file, t_fdf *fdf)
 	fdf->map.char_count = count_lines(file, fdf);
 	fdf->map.vals = (int **)malloc(sizeof(int *) * fdf->map.char_count);
 	if (!fdf->map.vals)
-		close_program("fdf.c -> Map values allocation error!", 0);
+		exit_program(1,"Error! Not enough memory space for map.vals[][]");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		close_program("fdf.c -> Map Open Error!", 0);
+		exit_program(1,"Error! Map opening error occured");
 	line = get_next_line(fd);
 	while (line)
 	{
 		fdf->map.vals[y] = (int *)malloc(sizeof(int) * fdf->map.line_count);
 		if (!fdf)
-			close_program("fdf.c -> Map y values malloc fail!", 0);
-
+			exit_program(1,"Error! Not enough memory space for map.vals[y]");
 		verify_line(line);
 		apply_values(fdf, x, y, line);
 		x = 0;
@@ -74,5 +73,5 @@ void	read_map(char *file, t_fdf *fdf)
 	if (line)
 		free(line);
 	if (close(fd) < 0)
-		close_program("fdf.c -> Map CLOSE Error!", 0);
+		exit_program(1,"Error! Map closing error occured");
 }
