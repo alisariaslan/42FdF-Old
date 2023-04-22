@@ -19,4 +19,4 @@ do_configure	:
 clean	:
 	./configure clean
 
-re	: clean all
+re : clean all

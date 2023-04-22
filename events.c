@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:36:10 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/20 12:17:44 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/22 09:56:24 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	keyboard_click(int key, t_fdf *fdf)
 	if (key == KEY_ESC)
 		exit_program(0, "!");
 	else if (key == 'w')
-		fdf->map.coord_y -= 10;
-	else if (key == 'a')
-		fdf->map.coord_x -= 10;
-	else if (key == 's')
 		fdf->map.coord_y += 10;
-	else if (key == 'd')
+	else if (key == 'a')
 		fdf->map.coord_x += 10;
+	else if (key == 's')
+		fdf->map.coord_y -= 10;
+	else if (key == 'd')
+		fdf->map.coord_x -= 10;
 	else if (key == 'q')
 		fdf->map.scalin -= 1;
 	else if (key == 'e')

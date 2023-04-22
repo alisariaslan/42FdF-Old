@@ -1,22 +1,24 @@
 NAME = fdf
 MLX = minilibx
+OS = linux
+AR = libmlx
 
 LIBFT = libft/libft.a
 
-NAME_LINUX = $(NAME)-linux
-MLX_LINUX = $(MLX)-linux
-MLX_LINUX_AR = libmlx_Linux.a
+NAME_LINUX = $(NAME)-$(OS)
+MLX_LINUX = $(MLX)-$(OS)
+MLX_LINUX_AR = $(AR).a
 
 NAME_MACOS = $(NAME)-mac
 MLX_MACOS = $(MLX)-macos
-MLX_MACOS_AR = libmlx.a
+MLX_MACOS_AR = $(AR).a
 
 MLX_MACOS_ARGS = -framework OpenGL -framework AppKit
 MLX_LINUX_ARGS = -lXext -lX11 -lm
 
 ARGS = -Wall -Wextra -Werror
 
-all:linux
+all:$(OS)
 	./$(NAME_LINUX) "maps/42.fdf"
 
 build-libft:
@@ -61,3 +63,7 @@ re: fclean all
 n:
 	clear
 	norminette *.c -R CheckForbiddenSourceHeader
+
+leak: $(NAME_LINUX)
+	valgrind --leak-check=yes --log-file=valgrind.rpt ./$(NAME_LINUX) "maps/42.fdf"
+	cat valgrind.rpt

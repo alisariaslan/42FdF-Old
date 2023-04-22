@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/04/20 12:11:35 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:21:17 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ typedef struct s_map
 
 typedef struct s_color
 {
-	int		r;
-	int		g;
-	int		b;
+	unsigned char		r;
+	unsigned char		g;
+	unsigned char		b;
 }			t_color;
 
 typedef struct s_fdf
