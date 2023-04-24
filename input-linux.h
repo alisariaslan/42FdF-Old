@@ -6,14 +6,14 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:59:11 by msariasl          #+#    #+#             */
-/*   Updated: 2023/03/30 19:16:33 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/24 22:05:07 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INPUT_LINUX
 # define INPUT_LINUX
 
-enum		EVENTS
+enum	EVENTS
 {
 	EVENT_ON_KEYDOWN = 2,
 	EVENT_ON_KEYUP = 3,
@@ -25,7 +25,7 @@ enum		EVENTS
 	EVENT_ON_RESIZE = 25
 };
 
-enum		KEYS
+enum	KEYS
 {
 	KEY_ESC = 65307
 };

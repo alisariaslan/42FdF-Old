@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 09:25:28 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/22 09:15:25 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/24 22:28:44 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static void	draw_pixel_helper(t_fdf *fdf, int x, int y, double dchang)
 	if ((x > 0 && y > 0) && (x < WIN_WIDTH && y < WIN_HEIGHT))
 	{
 		point = (x * 4) + (y * WIN_WIDTH * 4);
-		fdf->image.data[point] = fdf->color.r;
+		fdf->image.data[point] = fdf->color.b;
 		fdf->image.data[point + 1] = fdf->color.g;
-		fdf->image.data[point + 2] = fdf->color.b;
-		
+		fdf->image.data[point + 2] = fdf->color.r;
 	}
 }
 
@@ -52,8 +51,8 @@ static void	draw_pixel(t_fdf *fdf)
 
 static void	drawto_x_axis(t_fdf *fdf, int x, int y)
 {
-	int		dx;
-	int		dy;
+	int	dx;
+	int	dy;
 
 	dx = x - fdf->map.line_count / 2;
 	dy = y - fdf->map.char_count / 2;
@@ -72,8 +71,8 @@ static void	drawto_x_axis(t_fdf *fdf, int x, int y)
 
 static void	drawto_y_axis(t_fdf *fdf, int x, int y)
 {
-	int		dx;
-	int		dy;
+	int	dx;
+	int	dy;
 
 	dx = x - fdf->map.line_count / 2;
 	dy = y - fdf->map.char_count / 2;
@@ -92,8 +91,8 @@ static void	drawto_y_axis(t_fdf *fdf, int x, int y)
 
 int	draw(t_fdf *fdf)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	fdf->mlx.img = mlx_new_image(fdf->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
@@ -109,7 +108,7 @@ int	draw(t_fdf *fdf)
 			if (fdf->map.line_count > x + 1)
 				drawto_x_axis(fdf, x, y);
 			if (fdf->map.char_count > y + 1)
-				drawto_y_axis(fdf,x,y);
+				drawto_y_axis(fdf, x, y);
 			x++;
 		}
 		y++;

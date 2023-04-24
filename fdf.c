@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:15 by ali               #+#    #+#             */
-/*   Updated: 2023/04/20 12:18:59 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/24 22:05:47 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ void	init_program(char *argv1, t_fdf *fdf)
 {
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf)
-		exit_program(1,"Error! Not enough memory space for t_fdf* allocation");
+		exit_program(1, "Error! Not enough memory space for t_fdf* allocation");
 	read_map(argv1, fdf);
 	map_set(fdf);
 	fdf->mlx.mlx = mlx_init();
-	fdf->mlx.win = mlx_new_window(fdf->mlx.mlx,WIN_WIDTH,WIN_HEIGHT,"42 Fdf by Msariasl");
-	mlx_hook(fdf->mlx.win,2,3,keyboard_click,fdf);
+	fdf->mlx.win = mlx_new_window(fdf->mlx.mlx, WIN_WIDTH, WIN_HEIGHT,
+			"42 Fdf by Msariasl");
+	mlx_hook(fdf->mlx.win, 2, 3, keyboard_click, fdf);
 	mlx_hook(fdf->mlx.win, EVENT_ON_DESTROY, 0, exit_program, 0);
-	mlx_loop_hook(fdf->mlx.mlx,draw,fdf);
-	
+	mlx_loop_hook(fdf->mlx.mlx, draw, fdf);
 	mlx_loop(fdf->mlx.mlx);
 }
 

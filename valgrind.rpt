@@ -1,40 +1,40 @@
-==6988== Memcheck, a memory error detector
-==6988== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6988== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==6988== Command: ./fdf-linux maps/42.fdf
-==6988== Parent PID: 6987
-==6988== 
-==6988== 
-==6988== HEAP SUMMARY:
-==6988==     in use at exit: 90,319 bytes in 548 blocks
-==6988==   total heap usage: 2,592 allocs, 2,044 frees, 189,695 bytes allocated
-==6988== 
-==6988== 479 bytes in 209 blocks are definitely lost in loss record 42 of 57
-==6988==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==6988==    by 0x10CCF3: split_write (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10CE0A: ft_split (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10B823: apply_values (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10B9F4: read_map (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10B564: init_program (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10B663: main (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988== 
-==6988== 2,239 (1,760 direct, 479 indirect) bytes in 11 blocks are definitely lost in loss record 50 of 57
-==6988==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==6988==    by 0x10CDC6: ft_split (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10A856: count_words (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10A919: count_lines (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10B8FB: read_map (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10B564: init_program (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988==    by 0x10B663: main (in /home/msariasl/Desktop/42FdF/fdf-linux)
-==6988== 
-==6988== LEAK SUMMARY:
-==6988==    definitely lost: 2,239 bytes in 220 blocks
-==6988==    indirectly lost: 479 bytes in 209 blocks
-==6988==      possibly lost: 0 bytes in 0 blocks
-==6988==    still reachable: 87,601 bytes in 119 blocks
-==6988==         suppressed: 0 bytes in 0 blocks
-==6988== Reachable blocks (those to which a pointer was found) are not shown.
-==6988== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==6988== 
-==6988== For lists of detected and suppressed errors, rerun with: -s
-==6988== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 162 from 1)
+==6319== Memcheck, a memory error detector
+==6319== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6319== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==6319== Command: ./fdf-linux maps/42.fdf
+==6319== Parent PID: 6318
+==6319== 
+==6319== 
+==6319== HEAP SUMMARY:
+==6319==     in use at exit: 90,319 bytes in 548 blocks
+==6319==   total heap usage: 1,342 allocs, 794 frees, 137,195 bytes allocated
+==6319== 
+==6319== 479 bytes in 209 blocks are definitely lost in loss record 43 of 57
+==6319==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6319==    by 0x10CCF3: split_write (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10CE0A: ft_split (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10B823: apply_values (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10B9F4: read_map (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10B564: init_program (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10B663: main (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319== 
+==6319== 2,239 (1,760 direct, 479 indirect) bytes in 11 blocks are definitely lost in loss record 50 of 57
+==6319==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6319==    by 0x10CDC6: ft_split (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10A856: count_words (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10A919: count_lines (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10B8FB: read_map (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10B564: init_program (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319==    by 0x10B663: main (in /home/msariasl/Desktop/42FdF/fdf-linux)
+==6319== 
+==6319== LEAK SUMMARY:
+==6319==    definitely lost: 2,239 bytes in 220 blocks
+==6319==    indirectly lost: 479 bytes in 209 blocks
+==6319==      possibly lost: 0 bytes in 0 blocks
+==6319==    still reachable: 87,601 bytes in 119 blocks
+==6319==         suppressed: 0 bytes in 0 blocks
+==6319== Reachable blocks (those to which a pointer was found) are not shown.
+==6319== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==6319== 
+==6319== For lists of detected and suppressed errors, rerun with: -s
+==6319== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 37 from 1)
