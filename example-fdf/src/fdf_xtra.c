@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 15:04:05 by oldurosi          #+#    #+#             */
-/*   Updated: 2023/04/06 03:36:21 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/25 08:40:20 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		drawing_to_display(t_fdf *fdf)
 	print_string(fdf);
 }
 
-int			line_count(char *argv, t_fdf *fdf)
+int			char_count(char *argv, t_fdf *fdf)
 {
 	int		rows;
 	int		cols;

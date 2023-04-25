@@ -9,7 +9,7 @@ NAME_LINUX = $(NAME)-$(OS)
 MLX_LINUX = $(MLX)-$(OS)
 MLX_LINUX_AR = $(AR).a
 
-NAME_MACOS = $(NAME)-mac
+NAME_MACOS = $(NAME)-macos
 MLX_MACOS = $(MLX)-macos
 MLX_MACOS_AR = $(AR).a
 
@@ -24,7 +24,7 @@ all:$(OS)
 build-libft:
 	cd libft && make
 
-mac: $(NAME_MACOS)
+macos: $(NAME_MACOS)
 
 linux: $(NAME_LINUX)
 

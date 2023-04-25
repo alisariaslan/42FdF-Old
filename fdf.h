@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/04/24 22:28:09 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/25 09:35:00 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define ALTI_ZOOM 10
 # define MAX_ZOOM 5
 # define MAGNIFY 2
-# define WRITE_MAP 1
 
 # include "input-linux.h"
 # include "libft/libft.h"
@@ -52,8 +51,8 @@ typedef struct s_map
 	int				x1;
 	int				y1;
 	int				**vals;
-	int				line_count;
 	int				char_count;
+	int				line_count;
 	int				coord_x;
 	int				coord_y;
 	int				scalin;
@@ -78,15 +77,21 @@ typedef struct s_fdf
 	t_color			color;
 }					t_fdf;
 
+
 int					check_fd(int fd);
 int					draw(t_fdf *fdf);
 int					exit_program(int n, char *text);
 void				close_program(char *closing_text, int exit_code);
-void				read_map(char *file, t_fdf *fdf);
+void				read_map(char *file, t_fdf *fdf, int x, int y);
 int					count_lines(char *file, t_fdf *fdf,int rows,int columns);
 int					count_words(char *text, char divider);
 int					keyboard_click(int key, t_fdf *fdf);
 void				show_invalid_file_input(char *argv0);
 void				how_to_control(void);
+void 				fc_printf(char *text, int r, int g, int y);
+void				print_red (void);
+void				print_green(void);
+void				print_yellow(void);
+void				print_color_reset(void);
 
 #endif

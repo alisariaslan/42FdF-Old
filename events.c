@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:36:10 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/24 22:36:51 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/25 09:54:53 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	exit_program(int n, char *text)
 {
-	if (*text != '!')
-		ft_printf("\n\033[03;33m%s\n", text);
+	if (n == 0)
+		fc_printf("Safe Exit.\n\n", 0, 1, 0);
 	else
-		ft_printf("%s\n\n", "Safe Exit.");
+		fc_printf(text, 1, 0, 0);
 	exit(n);
 }
 

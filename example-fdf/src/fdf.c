@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 18:15:51 by oldurosi          #+#    #+#             */
-/*   Updated: 2023/04/13 21:20:20 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/25 08:40:20 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		fdf_read(char *argv, t_fdf *fdf)
 
 	x = 0;
 	y = 0;
-	fdf->map.breadth = line_count(argv, fdf);
+	fdf->map.breadth = char_count(argv, fdf);
 	if ((fd = open(argv, O_RDONLY)) < 0)
 		ft_puterror("Error opening file!", 1);
 	if (!(fdf->map.values = (int **)malloc(sizeof(int *) * fdf->map.breadth)))

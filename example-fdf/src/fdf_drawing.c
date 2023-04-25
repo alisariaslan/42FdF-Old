@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 20:19:09 by oldurosi          #+#    #+#             */
-/*   Updated: 2023/04/13 22:35:07 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/25 08:40:32 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	draw_to_xaxis(t_fdf *fdf, int x, int y)
 	int		dy;
 
 	dx = x - fdf->map.length / 2;
-	dy = y - fdf->map.char_count / 2;
+	dy = y - fdf->map.line_count / 2;
 	fdf->map.x0 = fdf->map.angle_x * (dx - dy) * fdf->map.scalin;
 	fdf->map.y0 = fdf->map.angle_y * (dx + dy) * fdf->map.scalin;
 	fdf->map.y0 -= fdf->map.values[y][x] * fdf->map.z_value;
@@ -76,7 +76,7 @@ static void	draw_to_yaxis(t_fdf *fdf, int x, int y)
 	int		dy;
 
 	dx = x - fdf->map.length / 2;
-	dy = y - fdf->map.char_count / 2;
+	dy = y - fdf->map.line_count / 2;
 	fdf->map.x0 = fdf->map.angle_x * (dx - dy) * fdf->map.scalin;
 	fdf->map.y0 = fdf->map.angle_y * (dx + dy) * fdf->map.scalin;
 	fdf->map.y0 -= fdf->map.values[y][x] * fdf->map.z_value;
@@ -99,7 +99,7 @@ int			fdf_draw(t_fdf *fdf)
 	fdf->mlx.img = mlx_new_image(fdf->mlx.init, P_WIDTH, P_HEIGHT);
 	fdf->image.data = mlx_get_data_addr(fdf->mlx.img, &fdf->image.bpp, \
 			&fdf->image.size, &fdf->image.endian);
-	while (fdf->map.char_count > y)
+	while (fdf->map.line_count > y)
 	{
 		x = 0;
 		while (fdf->map.length > x)
@@ -108,7 +108,7 @@ int			fdf_draw(t_fdf *fdf)
 			fdf->map.y0 = y;
 			if (fdf->map.length > x + 1)
 				draw_to_xaxis(fdf, x, y);
-			if (fdf->map.char_count > y + 1)
+			if (fdf->map.line_count > y + 1)
 				draw_to_yaxis(fdf, x, y);
 			x++;
 		}

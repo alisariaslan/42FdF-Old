@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:48:55 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/24 22:10:58 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/25 10:02:40 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 static void	verify_line(char *line)
 {
+	fc_printf(line, 1, 0, 0);
 	while (*line)
 	{
 		if (!ft_isdigit(*line) && *line != ' ' && *line != '\n' && *line != '-'
 			&& *line != '+')
-			exit_program(1,
-					"Error! Map has different characters than expected. Ex:(digit,'newline','minus','positive')");
+			exit_program(1, "Error! Map has different characters than expected. \
+			Ex:(digit,'newline','minus','positive')");
 		line++;
 	}
 }
@@ -30,39 +31,33 @@ static void	apply_values(t_fdf *fdf, int x, int y, char *line)
 	char	**vals;
 
 	vals = ft_split(line, ' ');
-	if (vals)
+	i = 0;
+	while (vals[i] && (x != fdf->map.char_count))
 	{
-		i = 0;
-		while (vals[i] && (x != fdf->map.line_count))
-		{
-			fdf->map.vals[y][x] = ft_atoi(vals[i]);
-			i++;
-			x++;
-		}
-		free(vals);
+		fdf->map.vals[y][x] = ft_atoi(vals[i]);
+		free(vals[i]);
+		i++;
+		x++;
 	}
+	free(vals[i]);
+	free(vals);
 }
 
-void	read_map(char *file, t_fdf *fdf)
+void	read_map(char *file, t_fdf *fdf, int x, int y)
 {
-	int fd;
-	int x;
-	int y;
-	char *line;
+	int		fd;
+	char	*line;
 
-	x = 0;
-	y = 0;
-	fdf->map.char_count = count_lines(file, fdf,0,0);
-	fdf->map.vals = (int **)malloc(sizeof(int *) * fdf->map.char_count);
+	fdf->map.line_count = count_lines(file, fdf, 0, 0);
+	fdf->map.vals = (int **)malloc(sizeof(int *) * fdf->map.line_count);
 	if (!fdf->map.vals)
 		exit_program(1, "Error! Not enough memory space for map.vals[][]");
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		exit_program(1, "Error! Map opening error occured");
+	fd = check_fd(open(file, O_RDONLY));
+	fc_printf("\nTHE MAP:\n", 0, 0, 1);
 	line = get_next_line(fd);
 	while (line)
 	{
-		fdf->map.vals[y] = (int *)malloc(sizeof(int) * fdf->map.line_count);
+		fdf->map.vals[y] = (int *)malloc(sizeof(int) * fdf->map.char_count);
 		if (!fdf)
 			exit_program(1, "Error! Not enough memory space for map.vals[y]");
 		verify_line(line);
@@ -72,8 +67,6 @@ void	read_map(char *file, t_fdf *fdf)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (line)
-		free(line);
-	if (close(fd) < 0)
-		exit_program(1, "Error! Map closing error occured");
+	free(line);
+	check_fd(close(fd));
 }

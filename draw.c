@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 09:25:28 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/24 22:28:44 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/25 08:40:32 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void	drawto_x_axis(t_fdf *fdf, int x, int y)
 	int	dx;
 	int	dy;
 
-	dx = x - fdf->map.line_count / 2;
-	dy = y - fdf->map.char_count / 2;
+	dx = x - fdf->map.char_count / 2;
+	dy = y - fdf->map.line_count / 2;
 	fdf->map.x0 = fdf->map.angle_x * (dx - dy) * fdf->map.scalin;
 	fdf->map.y0 = fdf->map.angle_y * (dx + dy) * fdf->map.scalin;
 	fdf->map.y0 -= fdf->map.vals[y][x] * fdf->map.z_value;
@@ -74,8 +74,8 @@ static void	drawto_y_axis(t_fdf *fdf, int x, int y)
 	int	dx;
 	int	dy;
 
-	dx = x - fdf->map.line_count / 2;
-	dy = y - fdf->map.char_count / 2;
+	dx = x - fdf->map.char_count / 2;
+	dy = y - fdf->map.line_count / 2;
 	fdf->map.x0 = fdf->map.angle_x * (dx - dy) * fdf->map.scalin;
 	fdf->map.y0 = fdf->map.angle_y * (dx + dy) * fdf->map.scalin;
 	fdf->map.y0 -= fdf->map.vals[y][x] * fdf->map.z_value;
@@ -98,16 +98,16 @@ int	draw(t_fdf *fdf)
 	fdf->mlx.img = mlx_new_image(fdf->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	fdf->image.data = mlx_get_data_addr(fdf->mlx.img, &fdf->image.bpp,
 			&fdf->image.size, &fdf->image.endian);
-	while (fdf->map.char_count > y)
+	while (fdf->map.line_count > y)
 	{
 		x = 0;
-		while (fdf->map.line_count > x)
+		while (fdf->map.char_count > x)
 		{
 			fdf->map.x0 = x;
 			fdf->map.y0 = y;
-			if (fdf->map.line_count > x + 1)
+			if (fdf->map.char_count > x + 1)
 				drawto_x_axis(fdf, x, y);
-			if (fdf->map.char_count > y + 1)
+			if (fdf->map.line_count > y + 1)
 				drawto_y_axis(fdf, x, y);
 			x++;
 		}
