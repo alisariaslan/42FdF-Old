@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/04/25 09:35:00 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:18:14 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # define MAX_ZOOM 5
 # define MAGNIFY 2
 
-# include "input-linux.h"
+# include "input-macos.h"
+# include "minilibx-macos/mlx.h"
 # include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdarg.h>
@@ -81,7 +81,6 @@ typedef struct s_fdf
 int					check_fd(int fd);
 int					draw(t_fdf *fdf);
 int					exit_program(int n, char *text);
-void				close_program(char *closing_text, int exit_code);
 void				read_map(char *file, t_fdf *fdf, int x, int y);
 int					count_lines(char *file, t_fdf *fdf,int rows,int columns);
 int					count_words(char *text, char divider);

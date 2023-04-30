@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:15 by ali               #+#    #+#             */
-/*   Updated: 2023/04/25 09:20:54 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/30 12:59:20 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_program(char *argv1, t_fdf *fdf)
 	fdf->mlx.win = mlx_new_window(fdf->mlx.mlx, WIN_WIDTH, WIN_HEIGHT,
 			"42 Fdf by Msariasl");
 	how_to_control();
-	mlx_hook(fdf->mlx.win, 2, 3, keyboard_click, fdf);
+	mlx_hook(fdf->mlx.win, EVENT_ON_KEYDOWN, 0, keyboard_click, fdf);
 	mlx_hook(fdf->mlx.win, EVENT_ON_DESTROY, 0, exit_program, 0);
 	mlx_loop_hook(fdf->mlx.mlx, draw, fdf);
 	mlx_loop(fdf->mlx.mlx);
@@ -58,5 +58,5 @@ int	main(int argc, char **argv)
 		init_program(argv[1], fdf);
 	else
 		show_invalid_file_input(argv[0]);
-	return (0);
+	return (1);
 }

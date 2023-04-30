@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:59:11 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/24 22:05:07 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:07:27 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,24 @@ enum	EVENTS
 
 enum	KEYS
 {
-	KEY_ESC = 65307
+	KEY_ESC = 65307,
+	KEY_W = 'w',
+	KEY_A = 'a',
+	KEY_S = 's',
+	KEY_D = 'd',
+	KEY_Q = 'q',
+	KEY_E = 'e',
+	KEY_T = 't',
+	KEY_Y = 'y',
+	KEY_R = 'r',
+	KEY_C = 'c',
+	KEY_G = 'g',
+	KEY_B = 'b',
+	KEY_K = 'k',
+	KEY_L = 'l',
+	KEY_M = 'm',
+	KEY_N = 'n',
+	KEY_P = 'p'
 };
 
 #endif

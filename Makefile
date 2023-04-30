@@ -1,25 +1,23 @@
 NAME = fdf
 MLX = minilibx
-OS = linux
-AR = libmlx
+AR = libmlx.a
 
 LIBFT = libft/libft.a
 
-NAME_LINUX = $(NAME)-$(OS)
-MLX_LINUX = $(MLX)-$(OS)
-MLX_LINUX_AR = $(AR).a
+NAME_LINUX = $(NAME)-linux
+MLX_LINUX = $(MLX)-linux
+MLX_LINUX_AR = $(AR)
 
 NAME_MACOS = $(NAME)-macos
 MLX_MACOS = $(MLX)-macos
-MLX_MACOS_AR = $(AR).a
+MLX_MACOS_AR = $(AR)
 
 MLX_MACOS_ARGS = -framework OpenGL -framework AppKit
 MLX_LINUX_ARGS = -lXext -lX11 -lm
+NORM_ARGS = -Wall -Wextra -Werror
 
-ARGS = -Wall -Wextra -Werror
-
-all:$(OS)
-	./$(NAME_LINUX) "maps/42.fdf"
+all: macos
+	./$(NAME_MACOS) "maps/42.fdf"
 
 build-libft:
 	cd libft && make
@@ -38,11 +36,11 @@ $(MLX_LINUX_AR) : $(MLX_LINUX)/*.c
 
 $(NAME_MACOS): *.c $(MLX_MACOS_AR)
 	gcc -c *.c
-	gcc *.o $(MLX_MACOS)/$(MLX_MACOS_AR) $(LIBFT) -o $(NAME_MACOS) $(MLX_MACOS_ARGS)
+	gcc *.o $(MLX_MACOS)/$(MLX_MACOS_AR) $(LIBFT) -o $(NAME_MACOS) $(MLX_MACOS_ARGS) $(NORM_ARGS)
 
 $(NAME_LINUX): *.c $(MLX_LINUX_AR)
 	gcc -c *.c
-	gcc *.o $(MLX_LINUX)/$(MLX_LINUX_AR) $(LIBFT) -o $(NAME_LINUX) $(MLX_LINUX_ARGS)
+	gcc *.o $(MLX_LINUX)/$(MLX_LINUX_AR) $(LIBFT) -o $(NAME_LINUX) $(MLX_LINUX_ARGS) $(NORM_ARGS)
 
 clean:
 	rm -rf *.o
