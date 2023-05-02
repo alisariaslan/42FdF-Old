@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:35:46 by ali               #+#    #+#             */
-/*   Updated: 2023/05/02 19:02:47 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:03:28 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define MAX_ZOOM 5
 # define MAGNIFY 2
 
-# include "input-macos.h"
-# include "minilibx-macos/mlx.h"
+# include "input-linux.h"
+# include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <math.h>

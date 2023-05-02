@@ -6,7 +6,7 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:59:11 by msariasl          #+#    #+#             */
-/*   Updated: 2023/04/30 14:08:31 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:05:14 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,11 @@ enum	KEYS
 	KEY_N = 45,
 	KEY_P = 35
 };
+
+enum MASKS
+{
+	KEY_DOWN_MASK = 0
+};
+
 
 #endif
