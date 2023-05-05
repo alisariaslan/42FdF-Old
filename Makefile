@@ -6,7 +6,7 @@
 #    By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/02 18:50:27 by msariasl          #+#    #+#              #
-#    Updated: 2023/05/02 19:03:40 by msariasl         ###   ########.fr        #
+#    Updated: 2023/05/05 12:42:45 by msariasl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,29 +28,22 @@ MLX_MACOS_ARGS = -framework OpenGL -framework AppKit
 MLX_LINUX_ARGS = -lXext -lX11 -lm
 NORM_ARGS = -Wall -Wextra -Werror
 
-all: linux
-	./$(NAME_LINUX) "maps/42.fdf"
-
-build-libft:
-	cd libft && make
+all: macos
+	./$(NAME_MACOS) "maps/42.fdf"
 
 macos: $(NAME_MACOS)
 
 linux: $(NAME_LINUX)
 
-$(MLX_MACOS_AR) : $(MLX_MACOS)/*.c $(MLX_MACOS)/*.m
+$(NAME_MACOS): *.c
 	make -C ${MLX_MACOS}
-	make build-libft
-
-$(MLX_LINUX_AR) : $(MLX_LINUX)/*.c 
-	make -C ${MLX_LINUX}
-	make build-libft
-
-$(NAME_MACOS): *.c $(MLX_MACOS_AR)
+	make -C libft
 	gcc -c *.c
 	gcc *.o $(MLX_MACOS)/$(MLX_MACOS_AR) $(LIBFT) -o $(NAME_MACOS) $(MLX_MACOS_ARGS) $(NORM_ARGS)
 
 $(NAME_LINUX): *.c $(MLX_LINUX_AR)
+	make -C ${MLX_LINUX}
+	make -C libft
 	gcc -c *.c
 	gcc *.o $(MLX_LINUX)/$(MLX_LINUX_AR) $(LIBFT) -o $(NAME_LINUX) $(MLX_LINUX_ARGS) $(NORM_ARGS)
 
