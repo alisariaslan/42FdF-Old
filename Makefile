@@ -6,7 +6,7 @@
 #    By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/02 18:50:27 by msariasl          #+#    #+#              #
-#    Updated: 2023/05/05 12:42:45 by msariasl         ###   ########.fr        #
+#    Updated: 2023/05/13 10:22:19 by msariasl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ MLX_MACOS_ARGS = -framework OpenGL -framework AppKit
 MLX_LINUX_ARGS = -lXext -lX11 -lm
 NORM_ARGS = -Wall -Wextra -Werror
 
-all: macos
-	./$(NAME_MACOS) "maps/42.fdf"
+all: linux
+	./$(NAME_LINUX) "maps/42.fdf"
 
 macos: $(NAME_MACOS)
 
@@ -41,7 +41,7 @@ $(NAME_MACOS): *.c
 	gcc -c *.c
 	gcc *.o $(MLX_MACOS)/$(MLX_MACOS_AR) $(LIBFT) -o $(NAME_MACOS) $(MLX_MACOS_ARGS) $(NORM_ARGS)
 
-$(NAME_LINUX): *.c $(MLX_LINUX_AR)
+$(NAME_LINUX): *.c
 	make -C ${MLX_LINUX}
 	make -C libft
 	gcc -c *.c

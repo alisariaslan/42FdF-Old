@@ -20,8 +20,8 @@
 # define MAX_ZOOM 5
 # define MAGNIFY 2
 
-# include "input-macos.h"
-# include "minilibx-macos/mlx.h"
+# include "input-linux.h"
+# include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
